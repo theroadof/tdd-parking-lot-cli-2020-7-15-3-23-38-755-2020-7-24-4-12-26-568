@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingBoy {
-    private Map<CarTicket, Car> parkingLot = new HashMap<>();
+    private final Map<CarTicket, Car> parkingLot;
+
+    public ParkingBoy() {
+        this.parkingLot = new HashMap<>();
+    }
 
     public CarTicket park(Car car) {
-        if(this.parkingLot.size()>=10){
+        if (this.parkingLot.size() >= 10) {
             return null;
         }
         CarTicket carTicket = new CarTicket();
