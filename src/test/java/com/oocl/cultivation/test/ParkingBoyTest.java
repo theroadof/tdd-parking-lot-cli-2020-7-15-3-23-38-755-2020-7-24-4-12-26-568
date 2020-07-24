@@ -119,4 +119,19 @@ public class ParkingBoyTest {
         //then
         assertNull(newCar);
     }
+
+    @Test
+    void should_return_no_ticket_when_park_given_car_and_parking_lot_has_no_position() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        for(int i=0;i<10;i++){
+            parkingBoy.park(new Car());
+        }
+
+        //when
+        CarTicket ticket = parkingBoy.park(new Car());
+
+        //then
+        assertNull(ticket);
+    }
 }
