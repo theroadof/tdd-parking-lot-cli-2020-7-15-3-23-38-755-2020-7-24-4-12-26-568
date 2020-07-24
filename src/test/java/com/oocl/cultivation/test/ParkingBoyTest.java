@@ -5,6 +5,11 @@ import com.oocl.cultivation.CarTicket;
 import com.oocl.cultivation.ParkingBoy;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -36,5 +41,20 @@ public class ParkingBoyTest {
         //then
         assertNotNull(car);
         assertEquals(car,myCar);
+    }
+
+    @Test
+    void should_park_multiple_cars_when_park_given_multiple_cars() {
+        //given
+        List<Car> cars = Stream.of(new Car(),new Car(),new Car()).collect(Collectors.toList());
+        ParkingBoy parkingBoy = new ParkingBoy();
+
+        //when
+        cars.forEach(car -> {
+            CarTicket ticket = parkingBoy.park(car);
+        });
+
+        //then
+        assertEquals(cars.size(),parkingBoy.getParkingLot().size());
     }
 }
