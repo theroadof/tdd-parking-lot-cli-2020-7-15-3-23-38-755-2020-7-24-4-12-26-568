@@ -6,7 +6,7 @@ import java.util.Map;
 public class ParkingLot {
     private final Map<CarTicket, Car> parkingLot;
 
-    public ParkingLot() {
+    ParkingLot() {
         this.parkingLot = new HashMap<>();
     }
 

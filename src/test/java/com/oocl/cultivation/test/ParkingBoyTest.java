@@ -11,8 +11,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class ParkingBoyTest {
+class ParkingBoyTest {
 
     @Test
     void should_return_car_ticket_when_park_given_car() {
@@ -49,9 +51,7 @@ public class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy();
 
         //when
-        cars.forEach(car -> {
-            CarTicket ticket = parkingBoy.park(car);
-        });
+        cars.forEach(parkingBoy::park);
 
         //then
         assertEquals(cars.size(), parkingBoy.getParkingLot().getParkingLot().size());
@@ -63,9 +63,7 @@ public class ParkingBoyTest {
         List<Car> cars = Stream.of(new Car(), new Car(), new Car()).collect(Collectors.toList());
         ParkingBoy parkingBoy = new ParkingBoy();
         List<CarTicket> tickets = new ArrayList<>();
-        cars.forEach(car -> {
-            tickets.add(parkingBoy.park(car));
-        });
+        cars.forEach(car -> tickets.add(parkingBoy.park(car)));
         boolean isCorrespond = true;
 
         //when
@@ -123,10 +121,12 @@ public class ParkingBoyTest {
     @Test
     void should_return_no_ticket_when_park_given_car_and_parking_lot_has_no_position() {
         //given
-        ParkingBoy parkingBoy = new ParkingBoy();
+
+        ParkingBoy parkingBoy = mock(ParkingBoy.class);
         for (int i = 0; i < 10; i++) {
             parkingBoy.park(new Car());
         }
+        when(parkingBoy.park(new Car())).thenReturn(null);
 
         //when
         CarTicket ticket = parkingBoy.park(new Car());
@@ -141,7 +141,7 @@ public class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy();
         CarTicket ticket = parkingBoy.park(new Car());
         CarTicket illegalTicket = new CarTicket();
-        Car car = parkingBoy.fetch(ticket);
+        parkingBoy.fetch(ticket);
 
         //when then
         parkingBoy.fetch(ticket);
