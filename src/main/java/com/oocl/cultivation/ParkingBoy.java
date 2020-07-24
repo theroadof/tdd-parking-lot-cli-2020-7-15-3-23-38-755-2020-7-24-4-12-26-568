@@ -1,33 +1,38 @@
 package com.oocl.cultivation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ParkingBoy {
-    private ParkingLot parkingLot;
+    private List<ParkingLot> parkingLots;
+    private ParkingLot currentParkingLot;
 
     private String respondMessage;
 
     public ParkingBoy() {
-        this.parkingLot = new ParkingLot();
+        this.parkingLots = new ArrayList<>();
+        parkingLots.add(new ParkingLot());
+        this.currentParkingLot = parkingLots.get(0);
     }
 
     public CarTicket park(Car car) {
-        if (this.parkingLot.getParkingLot().size() >= 10) {
+        if (this.currentParkingLot.getParkingLot().size() >= 10) {
             this.respondMessage = "Not enough position.";
             return null;
         }
         CarTicket carTicket = new CarTicket();
-        this.parkingLot.getParkingLot().put(carTicket, car);
+        this.currentParkingLot.getParkingLot().put(carTicket, car);
         return carTicket;
     }
 
     public Car fetch(CarTicket ticket) {
-        Car car = parkingLot.getParkingLot().get(ticket);
+        Car car = currentParkingLot.getParkingLot().get(ticket);
         if (car == null) {
             this.respondMessage = "Unrecognized parking ticket.";
         }
-        parkingLot.getParkingLot().remove(ticket);
+        currentParkingLot.getParkingLot().remove(ticket);
         return car;
     }
 
@@ -37,7 +42,7 @@ public class ParkingBoy {
     }
 
     public ParkingLot getParkingLot() {
-        return parkingLot;
+        return currentParkingLot;
     }
 
     public String getRespondMessage() {
