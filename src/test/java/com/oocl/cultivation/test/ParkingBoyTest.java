@@ -177,4 +177,20 @@ public class ParkingBoyTest {
         //then
         assertEquals("Not enough position.", parkingBoy.getRespondMessage());
     }
+
+    @Test
+    void should_park_car_in_another_parkingLot_when_park_in_the_full_parkingLot_given_car() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car();
+        for (int i = 0; i < 10; i++) {
+            parkingBoy.park(new Car());
+        }
+
+        //when
+        CarTicket ticket = parkingBoy.park(car);
+
+        //then
+        assertNotNull(ticket);
+    }
 }
