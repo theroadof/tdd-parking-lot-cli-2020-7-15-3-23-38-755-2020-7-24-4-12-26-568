@@ -162,4 +162,19 @@ public class ParkingBoyTest {
         //then
         assertEquals("Please provide your parking ticket.",parkingBoy.getRespondMessage());
     }
+
+    @Test
+    void should_return_no_position_message_when_no_position_park_given_car() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        for(int i=0;i<10;i++){
+            parkingBoy.park(new Car());
+        }
+
+        //when
+        parkingBoy.park(new Car());
+
+        //then
+        assertEquals("Not enough position.",parkingBoy.getRespondMessage());
+    }
 }
