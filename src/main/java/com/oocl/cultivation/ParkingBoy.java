@@ -1,6 +1,5 @@
 package com.oocl.cultivation;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +30,10 @@ public class ParkingBoy {
     }
 
     public Car fetch() {
+        return null;
+    }
+
+    public String getRespondMessage() {
         return null;
     }
 }
