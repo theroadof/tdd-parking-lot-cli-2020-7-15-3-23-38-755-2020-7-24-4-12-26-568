@@ -150,4 +150,16 @@ public class ParkingBoyTest {
         parkingBoy.fetch(illegalTicket);
         assertEquals("Unrecognized parking ticket.",parkingBoy.getRespondMessage());
     }
+
+    @Test
+    void should_return_provide_ticket_message_when_park_given_no_ticket() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+
+        //when
+        parkingBoy.fetch();
+
+        //then
+        assertEquals("Please provide your parking ticket.",parkingBoy.getRespondMessage());
+    }
 }
