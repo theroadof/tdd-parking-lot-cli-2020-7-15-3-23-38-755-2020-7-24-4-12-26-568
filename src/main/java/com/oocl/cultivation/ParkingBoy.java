@@ -35,6 +35,7 @@ public class ParkingBoy {
     }
 
     public Car fetch() {
+        this.respondMessage="Please provide your parking ticket.";
         return null;
     }
 
