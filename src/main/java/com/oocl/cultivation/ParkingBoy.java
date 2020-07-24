@@ -6,6 +6,8 @@ import java.util.Map;
 public class ParkingBoy {
     private final Map<CarTicket, Car> parkingLot;
 
+    private String respondMessage;
+
     public ParkingBoy() {
         this.parkingLot = new HashMap<>();
     }
@@ -21,6 +23,9 @@ public class ParkingBoy {
 
     public Car fetch(CarTicket ticket) {
         Car car = parkingLot.get(ticket);
+        if(car==null){
+            this.respondMessage = "Unrecognized parking ticket.";
+        }
         parkingLot.remove(ticket);
         return car;
     }
@@ -34,6 +39,6 @@ public class ParkingBoy {
     }
 
     public String getRespondMessage() {
-        return null;
+        return this.respondMessage;
     }
 }
