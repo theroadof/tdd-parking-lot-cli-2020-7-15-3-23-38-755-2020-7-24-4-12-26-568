@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
 
@@ -56,5 +55,27 @@ public class ParkingBoyTest {
 
         //then
         assertEquals(cars.size(),parkingBoy.getParkingLot().size());
+    }
+
+    @Test
+    void should_fetch_right_cars_when_fetch_given_multiple_tickets() {
+        //given
+        List<Car> cars = Stream.of(new Car(),new Car(),new Car()).collect(Collectors.toList());
+        ParkingBoy parkingBoy = new ParkingBoy();
+        List<CarTicket> tickets = new ArrayList<>();
+        cars.forEach(car -> {
+            tickets.add(parkingBoy.park(car));
+        });
+        boolean isCorrespond = true;
+
+        //when
+        for(int i=0;i<cars.size();i++){
+            if(!parkingBoy.fetch(tickets.get(i)).equals(cars.get(i))){
+                isCorrespond=false;
+            }
+        }
+
+        //then
+        assertTrue(isCorrespond);
     }
 }
