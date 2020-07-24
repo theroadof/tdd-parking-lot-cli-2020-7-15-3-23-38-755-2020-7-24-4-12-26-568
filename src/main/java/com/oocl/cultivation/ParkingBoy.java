@@ -16,11 +16,13 @@ public class ParkingBoy {
     }
 
     public CarTicket park(Car car) {
+        CarTicket carTicket = new CarTicket();
         if (this.currentParkingLot.getParkingLot().size() >= 10) {
+            this.parkingLots.add(new ParkingLot());
+            this.currentParkingLot = parkingLots.get(parkingLots.size()-1);
             this.respondMessage = "Not enough position.";
             return null;
         }
-        CarTicket carTicket = new CarTicket();
         this.currentParkingLot.getParkingLot().put(carTicket, car);
         return carTicket;
     }
