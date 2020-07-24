@@ -39,13 +39,13 @@ public class ParkingBoyTest {
 
         //then
         assertNotNull(car);
-        assertEquals(car,myCar);
+        assertEquals(car, myCar);
     }
 
     @Test
     void should_park_multiple_cars_when_park_given_multiple_cars() {
         //given
-        List<Car> cars = Stream.of(new Car(),new Car(),new Car()).collect(Collectors.toList());
+        List<Car> cars = Stream.of(new Car(), new Car(), new Car()).collect(Collectors.toList());
         ParkingBoy parkingBoy = new ParkingBoy();
 
         //when
@@ -54,13 +54,13 @@ public class ParkingBoyTest {
         });
 
         //then
-        assertEquals(cars.size(),parkingBoy.getParkingLot().size());
+        assertEquals(cars.size(), parkingBoy.getParkingLot().size());
     }
 
     @Test
     void should_fetch_right_cars_when_fetch_given_multiple_tickets() {
         //given
-        List<Car> cars = Stream.of(new Car(),new Car(),new Car()).collect(Collectors.toList());
+        List<Car> cars = Stream.of(new Car(), new Car(), new Car()).collect(Collectors.toList());
         ParkingBoy parkingBoy = new ParkingBoy();
         List<CarTicket> tickets = new ArrayList<>();
         cars.forEach(car -> {
@@ -69,13 +69,26 @@ public class ParkingBoyTest {
         boolean isCorrespond = true;
 
         //when
-        for(int i=0;i<cars.size();i++){
-            if(!parkingBoy.fetch(tickets.get(i)).equals(cars.get(i))){
-                isCorrespond=false;
+        for (int i = 0; i < cars.size(); i++) {
+            if (!parkingBoy.fetch(tickets.get(i)).equals(cars.get(i))) {
+                isCorrespond = false;
             }
         }
 
         //then
         assertTrue(isCorrespond);
+    }
+
+    @Test
+    void should_return_no_car_when_fetch_wrong_ticket() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        CarTicket wrongTicket = new CarTicket();
+
+        //when
+        Car car = parkingBoy.fetch(wrongTicket);
+
+        //then
+        assertNull(car);
     }
 }
