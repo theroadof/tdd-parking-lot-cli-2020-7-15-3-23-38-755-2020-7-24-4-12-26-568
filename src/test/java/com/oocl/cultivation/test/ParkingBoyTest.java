@@ -124,7 +124,7 @@ public class ParkingBoyTest {
     void should_return_no_ticket_when_park_given_car_and_parking_lot_has_no_position() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             parkingBoy.park(new Car());
         }
 
@@ -145,10 +145,10 @@ public class ParkingBoyTest {
 
         //when then
         parkingBoy.fetch(ticket);
-        assertEquals("Unrecognized parking ticket.",parkingBoy.getRespondMessage());
+        assertEquals("Unrecognized parking ticket.", parkingBoy.getRespondMessage());
 
         parkingBoy.fetch(illegalTicket);
-        assertEquals("Unrecognized parking ticket.",parkingBoy.getRespondMessage());
+        assertEquals("Unrecognized parking ticket.", parkingBoy.getRespondMessage());
     }
 
     @Test
@@ -160,14 +160,14 @@ public class ParkingBoyTest {
         parkingBoy.fetch();
 
         //then
-        assertEquals("Please provide your parking ticket.",parkingBoy.getRespondMessage());
+        assertEquals("Please provide your parking ticket.", parkingBoy.getRespondMessage());
     }
 
     @Test
     void should_return_no_position_message_when_no_position_park_given_car() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             parkingBoy.park(new Car());
         }
 
@@ -175,6 +175,6 @@ public class ParkingBoyTest {
         parkingBoy.park(new Car());
 
         //then
-        assertEquals("Not enough position.",parkingBoy.getRespondMessage());
+        assertEquals("Not enough position.", parkingBoy.getRespondMessage());
     }
 }

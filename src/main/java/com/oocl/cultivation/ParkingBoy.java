@@ -14,6 +14,7 @@ public class ParkingBoy {
 
     public CarTicket park(Car car) {
         if (this.parkingLot.size() >= 10) {
+            this.respondMessage = "Not enough position.";
             return null;
         }
         CarTicket carTicket = new CarTicket();
@@ -23,7 +24,7 @@ public class ParkingBoy {
 
     public Car fetch(CarTicket ticket) {
         Car car = parkingLot.get(ticket);
-        if(car==null){
+        if (car == null) {
             this.respondMessage = "Unrecognized parking ticket.";
         }
         parkingLot.remove(ticket);
@@ -35,7 +36,7 @@ public class ParkingBoy {
     }
 
     public Car fetch() {
-        this.respondMessage="Please provide your parking ticket.";
+        this.respondMessage = "Please provide your parking ticket.";
         return null;
     }
 
