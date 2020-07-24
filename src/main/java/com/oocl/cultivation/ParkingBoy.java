@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingBoy {
-    private Map<CarTicket,Car> parkingLot = new HashMap<>();
+    private Map<CarTicket, Car> parkingLot = new HashMap<>();
 
     public CarTicket park(Car car) {
         CarTicket carTicket = new CarTicket();
-        parkingLot.put(carTicket,car);
+        parkingLot.put(carTicket, car);
         return carTicket;
     }
 
@@ -17,7 +17,7 @@ public class ParkingBoy {
         return parkingLot.get(ticket);
     }
 
-    public Collection<Object> getParkingLot() {
-        return null;
+    public Map<CarTicket, Car> getParkingLot() {
+        return parkingLot;
     }
 }
