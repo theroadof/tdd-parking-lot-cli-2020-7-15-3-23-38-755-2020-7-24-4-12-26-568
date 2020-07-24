@@ -20,4 +20,8 @@ public class ParkingBoy {
     public Map<CarTicket, Car> getParkingLot() {
         return parkingLot;
     }
+
+    public Car fetch() {
+        return null;
+    }
 }

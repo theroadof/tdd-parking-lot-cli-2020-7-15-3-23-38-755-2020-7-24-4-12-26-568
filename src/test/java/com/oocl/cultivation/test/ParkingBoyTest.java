@@ -93,5 +93,16 @@ public class ParkingBoyTest {
         assertNull(car);
     }
 
+    @Test
+    void should_return_no_car_when_fetch_given_no_ticket() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.park(new Car());
 
+        //when
+        Car car = parkingBoy.fetch();
+
+        //then
+        assertNull(car);
+    }
 }
