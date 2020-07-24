@@ -4,40 +4,40 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingBoy {
-    private final Map<CarTicket, Car> parkingLot;
+    private ParkingLot parkingLot;
 
     private String respondMessage;
 
     public ParkingBoy() {
-        this.parkingLot = new HashMap<>();
+        this.parkingLot = new ParkingLot();
     }
 
     public CarTicket park(Car car) {
-        if (this.parkingLot.size() >= 10) {
+        if (this.parkingLot.getParkingLot().size() >= 10) {
             this.respondMessage = "Not enough position.";
             return null;
         }
         CarTicket carTicket = new CarTicket();
-        parkingLot.put(carTicket, car);
+        this.parkingLot.getParkingLot().put(carTicket, car);
         return carTicket;
     }
 
     public Car fetch(CarTicket ticket) {
-        Car car = parkingLot.get(ticket);
+        Car car = parkingLot.getParkingLot().get(ticket);
         if (car == null) {
             this.respondMessage = "Unrecognized parking ticket.";
         }
-        parkingLot.remove(ticket);
+        parkingLot.getParkingLot().remove(ticket);
         return car;
-    }
-
-    public Map<CarTicket, Car> getParkingLot() {
-        return parkingLot;
     }
 
     public Car fetch() {
         this.respondMessage = "Please provide your parking ticket.";
         return null;
+    }
+
+    public ParkingLot getParkingLot() {
+        return parkingLot;
     }
 
     public String getRespondMessage() {

@@ -54,7 +54,7 @@ public class ParkingBoyTest {
         });
 
         //then
-        assertEquals(cars.size(), parkingBoy.getParkingLot().size());
+        assertEquals(cars.size(), parkingBoy.getParkingLot().getParkingLot().size());
     }
 
     @Test
