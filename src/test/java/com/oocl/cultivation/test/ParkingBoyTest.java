@@ -122,11 +122,10 @@ class ParkingBoyTest {
     void should_return_no_ticket_when_park_given_car_and_parking_lot_has_no_position() {
         //given
 
-        ParkingBoy parkingBoy = mock(ParkingBoy.class);
-        for (int i = 0; i < 10; i++) {
+        ParkingBoy parkingBoy = new ParkingBoy();
+        for (int i = 0; i < 20; i++) {
             parkingBoy.park(new Car());
         }
-        when(parkingBoy.park(new Car())).thenReturn(null);
 
         //when
         CarTicket ticket = parkingBoy.park(new Car());
@@ -167,7 +166,7 @@ class ParkingBoyTest {
     void should_return_no_position_message_when_no_position_park_given_car() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             parkingBoy.park(new Car());
         }
 
@@ -193,4 +192,5 @@ class ParkingBoyTest {
         //then
         assertNotNull(ticket);
     }
+
 }

@@ -2,25 +2,30 @@ package com.oocl.cultivation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ParkingBoy {
-    private List<ParkingLot> parkingLots;
-    private ParkingLot currentParkingLot;
+    protected List<ParkingLot> parkingLots;
+    protected ParkingLot currentParkingLot;
 
-    private String respondMessage;
+    protected String respondMessage;
 
     public ParkingBoy() {
         this.parkingLots = new ArrayList<>();
-        parkingLots.add(new ParkingLot());
+        parkingLots.addAll(Stream.of(new ParkingLot(),new ParkingLot()).collect(Collectors.toList()));
         this.currentParkingLot = parkingLots.get(0);
     }
 
     public CarTicket park(Car car) {
         CarTicket carTicket = new CarTicket();
         if (this.currentParkingLot.getParkingLot().size() >= 10) {
-            this.parkingLots.add(new ParkingLot());
-            this.currentParkingLot = parkingLots.get(parkingLots.size() - 1);
-            this.respondMessage = "Not enough position.";
+            if(parkingLots.indexOf(this.currentParkingLot)<parkingLots.size()-1){
+                this.currentParkingLot = parkingLots.get(parkingLots.indexOf(this.currentParkingLot)+1);
+            }else {
+                this.respondMessage = "Not enough position.";
+                return null;
+            }
         }
         this.currentParkingLot.getParkingLot().put(carTicket, car);
         return carTicket;
