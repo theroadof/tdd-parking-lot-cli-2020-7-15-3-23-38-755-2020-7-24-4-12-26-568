@@ -6,10 +6,11 @@ import java.util.Map;
 public class ParkingLot implements Comparable<ParkingLot> {
     private final Map<CarTicket, Car> parkingLot;
 
-    private static final int CAPACITY = 10;
+    private int capacity;
 
-    ParkingLot() {
+    ParkingLot(int capacity) {
         this.parkingLot = new HashMap<>();
+        this.capacity = capacity;
     }
 
     public Map<CarTicket, Car> getParkingLot() {
@@ -18,14 +19,14 @@ public class ParkingLot implements Comparable<ParkingLot> {
 
     @Override
     public int compareTo(ParkingLot o) {
-        if(this.parkingLot.size()>o.getParkingLot().size()){
+        if (this.capacity-this.parkingLot.size() < o.getCapacity()-o.getParkingLot().size()) {
             return 1;
-        }else {
+        } else {
             return -1;
         }
     }
 
-    public static int getCAPACITY() {
-        return CAPACITY;
+    int getCapacity() {
+        return capacity;
     }
 }

@@ -8,7 +8,7 @@ public class SmartParkingBoy extends ParkingBoy {
         CarTicket carTicket = new CarTicket();
         Collections.sort(this.parkingLots);
         this.currentParkingLot = this.parkingLots.get(0);
-        if (this.currentParkingLot.getParkingLot().size() >= ParkingLot.getCAPACITY()) {
+        if (this.currentParkingLot.getParkingLot().size() >= this.currentParkingLot.getCapacity()) {
             this.respondMessage = "Not enough position.";
             return null;
         }

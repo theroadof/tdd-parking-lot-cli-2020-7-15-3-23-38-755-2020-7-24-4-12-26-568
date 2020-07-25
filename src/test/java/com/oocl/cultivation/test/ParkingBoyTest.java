@@ -125,9 +125,8 @@ class ParkingBoyTest {
     @Test
     void should_return_no_ticket_when_park_given_car_and_parking_lot_has_no_position() {
         //given
-
         ParkingBoy parkingBoy = new ParkingBoy();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 30; i++) {
             parkingBoy.park(new Car());
         }
 
@@ -170,7 +169,7 @@ class ParkingBoyTest {
     void should_return_no_position_message_when_no_position_park_given_car() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 30; i++) {
             parkingBoy.park(new Car());
         }
 
