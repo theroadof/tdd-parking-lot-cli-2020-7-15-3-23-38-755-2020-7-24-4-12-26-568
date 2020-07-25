@@ -1,9 +1,6 @@
 package com.oocl.cultivation.test;
 
-import com.oocl.cultivation.Car;
-import com.oocl.cultivation.CarTicket;
-import com.oocl.cultivation.ParkingBoy;
-import com.oocl.cultivation.SmartParkingBoy;
+import com.oocl.cultivation.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -55,9 +52,13 @@ class ParkingBoyTest {
 
         //when
         cars.forEach(parkingBoy::park);
+        int actual = 0;
+        for (ParkingLot parkingLot : parkingBoy.getParkingLots()) {
+            actual += parkingLot.getParkingLot().size();
+        }
 
         //then
-        assertEquals(cars.size(), parkingBoy.getCurrentParkingLot().getParkingLot().size());
+        assertEquals(cars.size(), actual);
     }
 
     @Test
@@ -201,15 +202,15 @@ class ParkingBoyTest {
         //given
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
         Car car = new Car();
-        smartParkingBoy.getParkingLots().get(1).getParkingLot().put(new CarTicket(),new Car());
-        smartParkingBoy.getParkingLots().get(0).getParkingLot().put(new CarTicket(),new Car());
-        smartParkingBoy.getParkingLots().get(0).getParkingLot().put(new CarTicket(),new Car());
+        smartParkingBoy.getParkingLots().get(1).getParkingLot().put(new CarTicket(), new Car());
+        smartParkingBoy.getParkingLots().get(0).getParkingLot().put(new CarTicket(), new Car());
+        smartParkingBoy.getParkingLots().get(0).getParkingLot().put(new CarTicket(), new Car());
         int size = smartParkingBoy.getParkingLots().get(0).getParkingLot().size();
 
         //when
         smartParkingBoy.park(car);
 
         //then
-        assertEquals(size,smartParkingBoy.getCurrentParkingLot().getParkingLot().size());
+        assertEquals(size, smartParkingBoy.getCurrentParkingLot().getParkingLot().size());
     }
 }

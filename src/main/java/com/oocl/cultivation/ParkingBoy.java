@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,30 +14,32 @@ public class ParkingBoy {
 
     public ParkingBoy() {
         this.parkingLots = new ArrayList<>();
-        parkingLots.addAll(Stream.of(new ParkingLot(),new ParkingLot()).collect(Collectors.toList()));
+        parkingLots.addAll(Stream.of(new ParkingLot(), new ParkingLot()).collect(Collectors.toList()));
         this.currentParkingLot = parkingLots.get(0);
     }
 
     public CarTicket park(Car car) {
         CarTicket carTicket = new CarTicket();
-        if (this.currentParkingLot.getParkingLot().size() >= 10) {
-            if(parkingLots.indexOf(this.currentParkingLot)<parkingLots.size()-1){
-                this.currentParkingLot = parkingLots.get(parkingLots.indexOf(this.currentParkingLot)+1);
-            }else {
-                this.respondMessage = "Not enough position.";
-                return null;
-            }
+        Collections.sort(this.parkingLots);
+        this.currentParkingLot = this.parkingLots.get(0);
+        if (this.currentParkingLot.getParkingLot().size() >= ParkingLot.getCAPACITY()) {
+            this.respondMessage = "Not enough position.";
+            return null;
         }
         this.currentParkingLot.getParkingLot().put(carTicket, car);
         return carTicket;
     }
 
     public Car fetch(CarTicket ticket) {
-        Car car = currentParkingLot.getParkingLot().get(ticket);
-        if (car == null) {
+        Car car = null;
+        for (ParkingLot parkingLot : this.parkingLots) {
+            if (parkingLot.getParkingLot().get(ticket) != null) {
+                car = parkingLot.getParkingLot().get(ticket);
+                parkingLot.getParkingLot().remove(ticket);
+                break;
+            }
             this.respondMessage = "Unrecognized parking ticket.";
         }
-        currentParkingLot.getParkingLot().remove(ticket);
         return car;
     }
 
