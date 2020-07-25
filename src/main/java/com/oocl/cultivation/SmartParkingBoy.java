@@ -3,6 +3,10 @@ package com.oocl.cultivation;
 import java.util.Collections;
 
 public class SmartParkingBoy extends ParkingBoy {
+    public SmartParkingBoy() {
+        super();
+    }
+
     @Override
     public CarTicket park(Car car) {
         CarTicket carTicket = new CarTicket();
@@ -15,5 +19,4 @@ public class SmartParkingBoy extends ParkingBoy {
         this.currentParkingLot.getParkingLot().put(carTicket, car);
         return carTicket;
     }
-
 }

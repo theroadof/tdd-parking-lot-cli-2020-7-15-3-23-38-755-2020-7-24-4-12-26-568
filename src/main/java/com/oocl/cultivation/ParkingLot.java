@@ -19,7 +19,7 @@ public class ParkingLot implements Comparable<ParkingLot> {
 
     @Override
     public int compareTo(ParkingLot o) {
-        if (this.capacity-this.parkingLot.size() < o.getCapacity()-o.getParkingLot().size()) {
+        if (this.capacity - this.parkingLot.size() < o.getCapacity() - o.getParkingLot().size()) {
             return 1;
         } else {
             return -1;
