@@ -20,11 +20,17 @@ public class ParkingBoy {
 
     public CarTicket park(Car car) {
         CarTicket carTicket = new CarTicket();
-        Collections.sort(this.parkingLots);
-        this.currentParkingLot = this.parkingLots.get(0);
         if (this.currentParkingLot.getParkingLot().size() >= ParkingLot.getCAPACITY()) {
-            this.respondMessage = "Not enough position.";
-            return null;
+            Collections.sort(this.parkingLots);
+            if (this.parkingLots.get(0).getParkingLot().size() < ParkingLot.getCAPACITY()) {
+                this.currentParkingLot = this.parkingLots.get(0);
+            } else {
+                this.respondMessage = "Not enough position.";
+                return null;
+            }
+        } else {
+            Collections.sort(this.parkingLots);
+            this.currentParkingLot = this.parkingLots.get(0);
         }
         this.currentParkingLot.getParkingLot().put(carTicket, car);
         return carTicket;

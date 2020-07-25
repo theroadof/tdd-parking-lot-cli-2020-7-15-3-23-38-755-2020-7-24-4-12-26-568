@@ -198,7 +198,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_park_car_in_more_empty_position_parkinglot_when_park_given_car() {
+    void should_park_car_in_more_empty_position_parking_lot_when_park_given_car() {
         //given
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
         Car car = new Car();
