@@ -3,10 +3,13 @@ package com.oocl.cultivation.test;
 import com.oocl.cultivation.Car;
 import com.oocl.cultivation.CarTicket;
 import com.oocl.cultivation.ParkingBoy;
+import com.oocl.cultivation.SmartParkingBoy;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -54,7 +57,7 @@ class ParkingBoyTest {
         cars.forEach(parkingBoy::park);
 
         //then
-        assertEquals(cars.size(), parkingBoy.getParkingLot().getParkingLot().size());
+        assertEquals(cars.size(), parkingBoy.getCurrentParkingLot().getParkingLot().size());
     }
 
     @Test
@@ -193,4 +196,20 @@ class ParkingBoyTest {
         assertNotNull(ticket);
     }
 
+    @Test
+    void should_park_car_in_more_empty_position_parkinglot_when_park_given_car() {
+        //given
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
+        Car car = new Car();
+        smartParkingBoy.getParkingLots().get(1).getParkingLot().put(new CarTicket(),new Car());
+        smartParkingBoy.getParkingLots().get(0).getParkingLot().put(new CarTicket(),new Car());
+        smartParkingBoy.getParkingLots().get(0).getParkingLot().put(new CarTicket(),new Car());
+        int size = smartParkingBoy.getParkingLots().get(0).getParkingLot().size();
+
+        //when
+        smartParkingBoy.park(car);
+
+        //then
+        assertEquals(size,smartParkingBoy.getCurrentParkingLot().getParkingLot().size());
+    }
 }

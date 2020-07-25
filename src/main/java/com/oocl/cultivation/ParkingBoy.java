@@ -45,11 +45,15 @@ public class ParkingBoy {
         return null;
     }
 
-    public ParkingLot getParkingLot() {
-        return currentParkingLot;
-    }
-
     public String getRespondMessage() {
         return this.respondMessage;
+    }
+
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
+    public ParkingLot getCurrentParkingLot() {
+        return currentParkingLot;
     }
 }
