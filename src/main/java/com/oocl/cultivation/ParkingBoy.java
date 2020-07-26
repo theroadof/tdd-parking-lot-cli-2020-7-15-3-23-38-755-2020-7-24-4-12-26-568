@@ -68,7 +68,7 @@ public class ParkingBoy implements ManagementStrategy {
 
     @Override
     public CarTicket specifyParking(Car car) {
-        return null;
+        return this.park(car);
     }
 
     @Override

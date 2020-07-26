@@ -12,7 +12,9 @@ public class Manager {
     }
 
     public void setManagementStrategy(ManagementStrategy managementStrategy) {
-        this.managementStrategy = managementStrategy;
+        if (parkingBoys.contains(managementStrategy)) {
+            this.managementStrategy = managementStrategy;
+        }
     }
 
     public void parkingManagement(Car car) {

@@ -19,11 +19,6 @@ public class ManagerTest {
         ParkingBoy smartParkingBoy = manager.getParkingBoys().get(1);
         ParkingBoy superSmartParkingBoy = manager.getParkingBoys().get(2);
 
-        ParkingLot notThisParkingLot = notThisBoy.getCurrentParkingLot();
-        ParkingLot parkingLot = parkingBoy.getCurrentParkingLot();
-        ParkingLot smartParkingLot = smartParkingBoy.getCurrentParkingLot();
-        ParkingLot superSmartParkingLot = superSmartParkingBoy.getCurrentParkingLot();
-
         //when
         manager.setManagementStrategy(parkingBoy);
         manager.parkingManagement(new Car());
@@ -34,10 +29,16 @@ public class ManagerTest {
         manager.setManagementStrategy(notThisBoy);
         manager.parkingManagement(new Car());
 
+        ParkingLot notThisParkingLot = notThisBoy.getCurrentParkingLot();
+        ParkingLot parkingLot = parkingBoy.getCurrentParkingLot();
+        ParkingLot smartParkingLot = smartParkingBoy.getCurrentParkingLot();
+        ParkingLot superSmartParkingLot = superSmartParkingBoy.getCurrentParkingLot();
+
         //then
-        assertEquals(1,parkingLot.getParkingLot().size());
-        assertEquals(1,smartParkingLot.getParkingLot().size());
-        assertEquals(1,superSmartParkingLot.getParkingLot().size());
-        assertEquals(0,notThisParkingLot.getParkingLot().size());
+        assertEquals(1, parkingLot.getParkingLot().size());
+        assertEquals(1, smartParkingLot.getParkingLot().size());
+        assertEquals(1, superSmartParkingLot.getParkingLot().size());
+        assertEquals(0, notThisParkingLot.getParkingLot().size());
     }
+
 }

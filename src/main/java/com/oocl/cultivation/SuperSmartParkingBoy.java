@@ -20,7 +20,7 @@ public class SuperSmartParkingBoy extends ParkingBoy implements ManagementStrate
 
     @Override
     public CarTicket specifyParking(Car car) {
-        return super.specifyParking(car);
+        return this.park(car);
     }
 
     @Override
