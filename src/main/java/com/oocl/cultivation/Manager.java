@@ -32,7 +32,12 @@ public class Manager {
     }
 
     public CarTicket park(Car car) {
-        return null;
+        if (this.parkingLot.getParkingLot().size() > this.parkingLot.getCapacity()) {
+            return null;
+        }
+        CarTicket ticket = new CarTicket();
+        parkingLot.getParkingLot().put(ticket,car);
+        return ticket;
     }
 
     public ParkingLot getParkingLot() {
