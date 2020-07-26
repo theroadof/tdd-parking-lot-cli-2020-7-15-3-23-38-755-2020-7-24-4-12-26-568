@@ -26,7 +26,7 @@ public class ParkingLot implements Comparable<ParkingLot> {
         }
     }
 
-    int getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 }

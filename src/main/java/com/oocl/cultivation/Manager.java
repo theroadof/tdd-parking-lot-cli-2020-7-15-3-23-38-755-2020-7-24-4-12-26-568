@@ -29,6 +29,7 @@ public class Manager extends ParkingBoy {
         return this.managementStrategy.specifyFetch(carTicket);
     }
 
+
     public void addParkingBoy(ParkingBoy parkingBoy) {
         this.parkingBoys.add(parkingBoy);
         parkingBoy.getParkingLots().add(this.parkingLot);
@@ -40,5 +41,9 @@ public class Manager extends ParkingBoy {
 
     public List<ParkingBoy> getParkingBoys() {
         return parkingBoys;
+    }
+
+    public String getRespondMessageFrom(ParkingBoy parkingBoy) {
+        return null;
     }
 }

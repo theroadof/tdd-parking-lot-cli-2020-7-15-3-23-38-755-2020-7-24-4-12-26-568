@@ -103,4 +103,34 @@ class ManagerTest {
         //then
         assertEquals(car, myCar);
     }
+
+    @Test
+    void should_return_message_when_specify_park_given_car() {
+        //given
+        Manager manager = new Manager();
+        for (int i = 0; i < manager.getParkingLot().getCapacity(); i++) {
+            manager.getParkingLot().getParkingLot().put(new CarTicket(), new Car());
+        }
+
+        manager.addParkingBoy(new ParkingBoy());
+        manager.addParkingBoy(new SmartParkingBoy());
+        manager.addParkingBoy(new SuperSmartParkingBoy());
+
+        ParkingBoy parkingBoy = manager.getParkingBoys().get(0);
+        ParkingBoy smartParkingBoy = manager.getParkingBoys().get(1);
+        ParkingBoy superSmartParkingBoy = manager.getParkingBoys().get(2);
+
+        //when
+        manager.setManagementStrategy(parkingBoy);
+        manager.parkingManagement(new Car());
+        manager.setManagementStrategy(smartParkingBoy);
+        manager.parkingManagement(new Car());
+        manager.setManagementStrategy(superSmartParkingBoy);
+        manager.parkingManagement(new Car());
+
+        //then
+        assertEquals("Not enough position.", manager.getRespondMessageFrom(parkingBoy));
+        assertEquals("Not enough position.", manager.getRespondMessageFrom(smartParkingBoy));
+        assertEquals("Not enough position.", manager.getRespondMessageFrom(superSmartParkingBoy));
+    }
 }
