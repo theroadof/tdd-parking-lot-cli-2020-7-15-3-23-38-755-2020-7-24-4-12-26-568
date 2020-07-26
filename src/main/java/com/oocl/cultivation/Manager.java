@@ -24,4 +24,8 @@ public class Manager {
     public List<ParkingBoy> getParkingBoys() {
         return parkingBoys;
     }
+
+    public Car fetchManagement(CarTicket carTicket) {
+        return null;
+    }
 }
