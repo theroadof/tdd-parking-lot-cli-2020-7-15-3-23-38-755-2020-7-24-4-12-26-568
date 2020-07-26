@@ -26,6 +26,6 @@ public class Manager {
     }
 
     public Car fetchManagement(CarTicket carTicket) {
-        return null;
+        return this.managementStrategy.specifyFetch(carTicket);
     }
 }

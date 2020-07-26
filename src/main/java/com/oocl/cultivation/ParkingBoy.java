@@ -73,6 +73,6 @@ public class ParkingBoy implements ManagementStrategy {
 
     @Override
     public Car specifyFetch(CarTicket carTicket) {
-        return null;
+        return this.fetch(carTicket);
     }
 }
