@@ -133,4 +133,22 @@ class ManagerTest {
         assertEquals("Not enough position.", manager.getRespondMessageFrom(smartParkingBoy));
         assertEquals("Not enough position.", manager.getRespondMessageFrom(superSmartParkingBoy));
     }
+
+    @Test
+    void should_return_unrecognized_ticket_message_when_specify_fetch_given_wrong_ticket() {
+        //given
+        Manager manager = new Manager();
+        manager.addParkingBoy(new ParkingBoy());
+        ParkingBoy parkingBoy = manager.getParkingBoys().get(0);
+        CarTicket ticket = parkingBoy.park(new Car());
+        parkingBoy.fetch(ticket);
+
+        //when
+        manager.setManagementStrategy(parkingBoy);
+        Car car = manager.fetchManagement(ticket);
+
+        //then
+        assertNull(car);
+        assertEquals("Unrecognized parking ticket.",manager.getRespondMessageFrom(parkingBoy));
+    }
 }
