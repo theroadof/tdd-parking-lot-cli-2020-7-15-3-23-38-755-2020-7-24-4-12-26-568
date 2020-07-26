@@ -94,4 +94,18 @@ public class ManagerTest {
         //then
         assertNotNull(ticket);
     }
+
+    @Test
+    void should_fetch_car_when_fetch_given_ticket() {
+        //given
+        Manager manager = new Manager();
+        Car car = new Car();
+        CarTicket carTicket = manager.park(car);
+
+        //when
+        Car myCar = manager.fetch(car);
+
+        //then
+        assertEquals(car,myCar);
+    }
 }

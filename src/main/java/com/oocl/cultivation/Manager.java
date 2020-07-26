@@ -40,7 +40,12 @@ public class Manager {
         return ticket;
     }
 
+    public Car fetch(Car car) {
+        return null;
+    }
+
     public ParkingLot getParkingLot() {
         return parkingLot;
     }
+
 }
