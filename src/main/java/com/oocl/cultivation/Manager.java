@@ -6,9 +6,11 @@ import java.util.List;
 public class Manager {
     private ManagementStrategy managementStrategy;
     private List<ParkingBoy> parkingBoys;
+    private ParkingLot parkingLot;
 
     public Manager() {
         this.parkingBoys = new ArrayList<>();
+        parkingLot = new ParkingLot(20);
     }
 
     public void setManagementStrategy(ManagementStrategy managementStrategy) {
@@ -27,5 +29,13 @@ public class Manager {
 
     public Car fetchManagement(CarTicket carTicket) {
         return this.managementStrategy.specifyFetch(carTicket);
+    }
+
+    public CarTicket park(Car car) {
+        return null;
+    }
+
+    public ParkingLot getParkingLot() {
+        return parkingLot;
     }
 }

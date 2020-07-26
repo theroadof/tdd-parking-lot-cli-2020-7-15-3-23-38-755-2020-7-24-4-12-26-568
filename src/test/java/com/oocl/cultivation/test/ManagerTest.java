@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ManagerTest {
     @Test
@@ -81,5 +80,18 @@ public class ManagerTest {
         assertEquals(cars.get(0), carList.get(0));
         assertEquals(cars.get(1), carList.get(1));
         assertEquals(cars.get(2), carList.get(2));
+    }
+
+    @Test
+    void should_return_ticket_when_park_given_car() {
+        //given
+        Manager manager = new Manager();
+        Car car = new Car();
+
+        //when
+        CarTicket ticket = manager.park(car);
+
+        //then
+        assertNotNull(ticket);
     }
 }
