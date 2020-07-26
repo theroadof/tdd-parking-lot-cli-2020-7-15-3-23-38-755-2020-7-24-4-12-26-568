@@ -40,5 +40,4 @@ public class ManagerTest {
         assertEquals(1, superSmartParkingLot.getParkingLot().size());
         assertEquals(0, notThisParkingLot.getParkingLot().size());
     }
-
 }

@@ -17,8 +17,8 @@ public class Manager {
         }
     }
 
-    public void parkingManagement(Car car) {
-        this.managementStrategy.specifyParking(car);
+    public CarTicket parkingManagement(Car car) {
+        return this.managementStrategy.specifyParking(car);
     }
 
     public List<ParkingBoy> getParkingBoys() {
