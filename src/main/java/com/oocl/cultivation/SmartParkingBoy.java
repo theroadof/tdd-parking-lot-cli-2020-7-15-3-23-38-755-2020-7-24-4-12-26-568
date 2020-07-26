@@ -24,9 +24,4 @@ public class SmartParkingBoy extends ParkingBoy implements ManagementStrategy {
     public CarTicket specifyParking(Car car) {
         return this.park(car);
     }
-
-    @Override
-    public Car specifyFetch(CarTicket carTicket) {
-        return super.specifyFetch(carTicket);
-    }
 }
