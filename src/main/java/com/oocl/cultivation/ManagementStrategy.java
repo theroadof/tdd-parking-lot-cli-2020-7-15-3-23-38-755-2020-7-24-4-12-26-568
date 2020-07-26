@@ -5,4 +5,6 @@ public interface ManagementStrategy {
     CarTicket specifyParking(Car car);
 
     Car specifyFetch(CarTicket carTicket);
+
+    Car specifyFetch();
 }

@@ -74,4 +74,9 @@ public class ParkingBoy implements ManagementStrategy {
     public Car specifyFetch(CarTicket carTicket) {
         return this.fetch(carTicket);
     }
+
+    @Override
+    public Car specifyFetch() {
+        return this.fetch();
+    }
 }

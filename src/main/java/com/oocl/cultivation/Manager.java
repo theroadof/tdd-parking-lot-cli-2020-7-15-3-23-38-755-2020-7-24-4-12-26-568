@@ -48,6 +48,6 @@ public class Manager extends ParkingBoy {
     }
 
     public Car fetchManagement() {
-        return null;
+        return this.managementStrategy.specifyFetch();
     }
 }
