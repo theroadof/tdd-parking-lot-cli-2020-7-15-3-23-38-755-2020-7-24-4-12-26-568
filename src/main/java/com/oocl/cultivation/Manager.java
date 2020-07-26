@@ -44,6 +44,6 @@ public class Manager extends ParkingBoy {
     }
 
     public String getRespondMessageFrom(ParkingBoy parkingBoy) {
-        return null;
+        return parkingBoy.getRespondMessage();
     }
 }
