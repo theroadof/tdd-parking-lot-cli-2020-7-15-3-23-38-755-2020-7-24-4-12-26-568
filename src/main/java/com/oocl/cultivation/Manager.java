@@ -3,7 +3,7 @@ package com.oocl.cultivation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Manager extends ParkingBoy{
+public class Manager extends ParkingBoy {
     private ManagementStrategy managementStrategy;
     private List<ParkingBoy> parkingBoys;
     private ParkingLot parkingLot;
@@ -12,8 +12,7 @@ public class Manager extends ParkingBoy{
         super();
         this.parkingBoys = new ArrayList<>();
         this.parkingLot = new ParkingLot(20);
-        this.getParkingLots().clear();
-        this.getParkingLots().add(parkingLot);
+        this.addParkingLot(parkingLot);
     }
 
     public void setManagementStrategy(ManagementStrategy managementStrategy) {
@@ -30,28 +29,10 @@ public class Manager extends ParkingBoy{
         return this.managementStrategy.specifyFetch(carTicket);
     }
 
-    public void addParkingBoy(ParkingBoy parkingBoy){
+    public void addParkingBoy(ParkingBoy parkingBoy) {
         this.parkingBoys.add(parkingBoy);
         parkingBoy.getParkingLots().add(this.parkingLot);
     }
-
-    @Override
-    public CarTicket park(Car car) {
-        if (this.parkingLot.getParkingLot().size() > this.parkingLot.getCapacity()) {
-            return null;
-        }
-        CarTicket ticket = new CarTicket();
-        parkingLot.getParkingLot().put(ticket,car);
-        return ticket;
-    }
-
-//    @Override
-//    public Car fetch(CarTicket ticket) {
-//        Car car = null;
-//        if(parkingLot.getParkingLot().get(ticket)==null){
-//
-//        }
-//    }
 
     public ParkingLot getParkingLot() {
         return parkingLot;
