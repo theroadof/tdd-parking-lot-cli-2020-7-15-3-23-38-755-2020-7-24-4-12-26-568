@@ -2,19 +2,14 @@ package com.oocl.cultivation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ParkingBoy implements ManagementStrategy {
     List<ParkingLot> parkingLots;
     ParkingLot currentParkingLot;
-
     String respondMessage;
 
     public ParkingBoy() {
         this.parkingLots = new ArrayList<>();
-        parkingLots.addAll(Stream.of(new ParkingLot(10), new ParkingLot(20)).collect(Collectors.toList()));
-        this.currentParkingLot = parkingLots.get(0);
     }
 
     public CarTicket park(Car car) {
@@ -52,6 +47,10 @@ public class ParkingBoy implements ManagementStrategy {
     public Car fetch() {
         this.respondMessage = "Please provide your parking ticket.";
         return null;
+    }
+
+    public void addParkingLot(ParkingLot parkingLot) {
+        parkingLots.add(parkingLot);
     }
 
     public String getRespondMessage() {

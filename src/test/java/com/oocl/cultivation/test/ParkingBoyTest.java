@@ -4,15 +4,11 @@ import com.oocl.cultivation.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class ParkingBoyTest {
 
@@ -21,6 +17,8 @@ class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
 
         //when
         CarTicket carTicket = parkingBoy.park(car);
@@ -34,6 +32,8 @@ class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
         CarTicket ticket = parkingBoy.park(car);
 
         //when
@@ -49,6 +49,8 @@ class ParkingBoyTest {
         //given
         List<Car> cars = Stream.of(new Car(), new Car(), new Car()).collect(Collectors.toList());
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
 
         //when
         cars.forEach(parkingBoy::park);
@@ -66,6 +68,8 @@ class ParkingBoyTest {
         //given
         List<Car> cars = Stream.of(new Car(), new Car(), new Car()).collect(Collectors.toList());
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
         List<CarTicket> tickets = new ArrayList<>();
         cars.forEach(car -> tickets.add(parkingBoy.park(car)));
         boolean isCorrespond = true;
@@ -85,6 +89,8 @@ class ParkingBoyTest {
     void should_return_no_car_when_fetch_given_wrong_ticket() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
         CarTicket wrongTicket = new CarTicket();
         parkingBoy.park(new Car());
 
@@ -99,6 +105,8 @@ class ParkingBoyTest {
     void should_return_no_car_when_fetch_given_no_ticket() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
         parkingBoy.park(new Car());
 
         //when
@@ -112,6 +120,8 @@ class ParkingBoyTest {
     void should_return_no_car_when_fetch_given_used_ticket() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
         CarTicket carTicket = parkingBoy.park(new Car());
         parkingBoy.fetch(carTicket);
 
@@ -126,6 +136,8 @@ class ParkingBoyTest {
     void should_return_no_ticket_when_park_given_car_and_parking_lot_has_no_position() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
         for (int i = 0; i < 30; i++) {
             parkingBoy.park(new Car());
         }
@@ -141,6 +153,8 @@ class ParkingBoyTest {
     void should_return_message_when_park_given_wrong_ticket_or_used_ticket() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
         CarTicket ticket = parkingBoy.park(new Car());
         CarTicket illegalTicket = new CarTicket();
         parkingBoy.fetch(ticket);
@@ -157,6 +171,8 @@ class ParkingBoyTest {
     void should_return_provide_ticket_message_when_park_given_no_ticket() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
 
         //when
         parkingBoy.fetch();
@@ -169,6 +185,8 @@ class ParkingBoyTest {
     void should_return_no_position_message_when_no_position_park_given_car() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
         for (int i = 0; i < 30; i++) {
             parkingBoy.park(new Car());
         }
@@ -184,6 +202,8 @@ class ParkingBoyTest {
     void should_park_car_in_another_parkingLot_when_park_in_the_full_parkingLot_given_car() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(new ParkingLot(10));
+        parkingBoy.addParkingLot(new ParkingLot(20));
         Car car = new Car();
         for (int i = 0; i < 10; i++) {
             parkingBoy.park(new Car());

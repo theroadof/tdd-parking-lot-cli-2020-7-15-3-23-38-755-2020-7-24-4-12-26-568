@@ -3,14 +3,17 @@ package com.oocl.cultivation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Manager {
+public class Manager extends ParkingBoy{
     private ManagementStrategy managementStrategy;
     private List<ParkingBoy> parkingBoys;
     private ParkingLot parkingLot;
 
     public Manager() {
+        super();
         this.parkingBoys = new ArrayList<>();
-        parkingLot = new ParkingLot(20);
+        this.parkingLot = new ParkingLot(20);
+        this.getParkingLots().clear();
+        this.getParkingLots().add(parkingLot);
     }
 
     public void setManagementStrategy(ManagementStrategy managementStrategy) {
@@ -23,14 +26,16 @@ public class Manager {
         return this.managementStrategy.specifyParking(car);
     }
 
-    public List<ParkingBoy> getParkingBoys() {
-        return parkingBoys;
-    }
-
     public Car fetchManagement(CarTicket carTicket) {
         return this.managementStrategy.specifyFetch(carTicket);
     }
 
+    public void addParkingBoy(ParkingBoy parkingBoy){
+        this.parkingBoys.add(parkingBoy);
+        parkingBoy.getParkingLots().add(this.parkingLot);
+    }
+
+    @Override
     public CarTicket park(Car car) {
         if (this.parkingLot.getParkingLot().size() > this.parkingLot.getCapacity()) {
             return null;
@@ -40,12 +45,19 @@ public class Manager {
         return ticket;
     }
 
-    public Car fetch(Car car) {
-        return null;
-    }
+//    @Override
+//    public Car fetch(CarTicket ticket) {
+//        Car car = null;
+//        if(parkingLot.getParkingLot().get(ticket)==null){
+//
+//        }
+//    }
 
     public ParkingLot getParkingLot() {
         return parkingLot;
     }
 
+    public List<ParkingBoy> getParkingBoys() {
+        return parkingBoys;
+    }
 }

@@ -10,16 +10,15 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ManagerTest {
+class ManagerTest {
     @Test
     void should_specify_parking_boy_to_park_when_specify_given_car() {
         //given
         Manager manager = new Manager();
-        manager.getParkingBoys().add(new ParkingBoy());
-        manager.getParkingBoys().add(new SmartParkingBoy());
-        manager.getParkingBoys().add(new SuperSmartParkingBoy());
+        manager.addParkingBoy(new ParkingBoy());
+        manager.addParkingBoy(new SmartParkingBoy());
+        manager.addParkingBoy(new SuperSmartParkingBoy());
 
-        ParkingBoy notThisBoy = new ParkingBoy();
         ParkingBoy parkingBoy = manager.getParkingBoys().get(0);
         ParkingBoy smartParkingBoy = manager.getParkingBoys().get(1);
         ParkingBoy superSmartParkingBoy = manager.getParkingBoys().get(2);
@@ -31,19 +30,15 @@ public class ManagerTest {
         manager.parkingManagement(new Car());
         manager.setManagementStrategy(superSmartParkingBoy);
         manager.parkingManagement(new Car());
-        manager.setManagementStrategy(notThisBoy);
-        manager.parkingManagement(new Car());
 
-        ParkingLot notThisParkingLot = notThisBoy.getCurrentParkingLot();
         ParkingLot parkingLot = parkingBoy.getCurrentParkingLot();
         ParkingLot smartParkingLot = smartParkingBoy.getCurrentParkingLot();
         ParkingLot superSmartParkingLot = superSmartParkingBoy.getCurrentParkingLot();
 
         //then
-        assertEquals(1, parkingLot.getParkingLot().size());
-        assertEquals(1, smartParkingLot.getParkingLot().size());
-        assertEquals(1, superSmartParkingLot.getParkingLot().size());
-        assertEquals(0, notThisParkingLot.getParkingLot().size());
+        assertEquals(3, parkingLot.getParkingLot().size());
+        assertEquals(3, smartParkingLot.getParkingLot().size());
+        assertEquals(3, superSmartParkingLot.getParkingLot().size());
     }
 
     @Test
@@ -51,9 +46,9 @@ public class ManagerTest {
         //given
         Manager manager = new Manager();
         List<Car> cars = Stream.of(new Car(), new Car(), new Car(), new Car()).collect(Collectors.toList());
-        manager.getParkingBoys().add(new ParkingBoy());
-        manager.getParkingBoys().add(new SmartParkingBoy());
-        manager.getParkingBoys().add(new SuperSmartParkingBoy());
+        manager.addParkingBoy(new ParkingBoy());
+        manager.addParkingBoy(new SmartParkingBoy());
+        manager.addParkingBoy(new SuperSmartParkingBoy());
 
         ParkingBoy parkingBoy = manager.getParkingBoys().get(0);
         ParkingBoy smartParkingBoy = manager.getParkingBoys().get(1);
@@ -103,9 +98,9 @@ public class ManagerTest {
         CarTicket carTicket = manager.park(car);
 
         //when
-        Car myCar = manager.fetch(car);
+        Car myCar = manager.fetch(carTicket);
 
         //then
-        assertEquals(car,myCar);
+        assertEquals(car, myCar);
     }
 }

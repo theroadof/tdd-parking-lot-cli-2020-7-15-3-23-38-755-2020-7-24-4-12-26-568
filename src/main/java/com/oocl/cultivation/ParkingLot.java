@@ -8,7 +8,7 @@ public class ParkingLot implements Comparable<ParkingLot> {
 
     private int capacity;
 
-    ParkingLot(int capacity) {
+    public ParkingLot(int capacity) {
         this.parkingLot = new HashMap<>();
         this.capacity = capacity;
     }
