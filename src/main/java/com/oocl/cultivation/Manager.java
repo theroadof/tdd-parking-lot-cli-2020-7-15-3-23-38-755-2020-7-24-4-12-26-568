@@ -46,4 +46,8 @@ public class Manager extends ParkingBoy {
     public String getRespondMessageFrom(ParkingBoy parkingBoy) {
         return parkingBoy.getRespondMessage();
     }
+
+    public Car fetchManagement() {
+        return null;
+    }
 }

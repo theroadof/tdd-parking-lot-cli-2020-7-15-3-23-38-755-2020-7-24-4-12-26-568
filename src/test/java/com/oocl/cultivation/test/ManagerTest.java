@@ -151,4 +151,20 @@ class ManagerTest {
         assertNull(car);
         assertEquals("Unrecognized parking ticket.",manager.getRespondMessageFrom(parkingBoy));
     }
+
+    @Test
+    void should_return_provide_ticket_message_when_specify_fetch_given_wrong_ticket() {
+        //given
+        Manager manager = new Manager();
+        manager.addParkingBoy(new ParkingBoy());
+        ParkingBoy parkingBoy = manager.getParkingBoys().get(0);
+
+        //when
+        manager.setManagementStrategy(parkingBoy);
+        Car car = manager.fetchManagement();
+
+        //then
+        assertNull(car);
+        assertEquals("Please provide your parking ticket.",manager.getRespondMessageFrom(parkingBoy));
+    }
 }
