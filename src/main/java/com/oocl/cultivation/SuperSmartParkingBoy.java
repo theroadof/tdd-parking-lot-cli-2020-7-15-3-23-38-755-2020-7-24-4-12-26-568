@@ -1,6 +1,6 @@
 package com.oocl.cultivation;
 
-public class SuperSmartParkingBoy extends ParkingBoy {
+public class SuperSmartParkingBoy extends ParkingBoy implements ManagementStrategy {
     public SuperSmartParkingBoy() {
         super();
     }
@@ -16,5 +16,15 @@ public class SuperSmartParkingBoy extends ParkingBoy {
         }
         this.currentParkingLot.getParkingLot().put(carTicket, car);
         return carTicket;
+    }
+
+    @Override
+    public CarTicket specifyParking(Car car) {
+        return super.specifyParking(car);
+    }
+
+    @Override
+    public Car specifyFetch(CarTicket carTicket) {
+        return super.specifyFetch(carTicket);
     }
 }

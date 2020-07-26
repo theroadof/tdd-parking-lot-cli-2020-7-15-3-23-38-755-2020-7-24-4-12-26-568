@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ParkingBoy {
+public class ParkingBoy implements ManagementStrategy {
     List<ParkingLot> parkingLots;
     ParkingLot currentParkingLot;
 
@@ -64,5 +64,15 @@ public class ParkingBoy {
 
     public ParkingLot getCurrentParkingLot() {
         return currentParkingLot;
+    }
+
+    @Override
+    public CarTicket specifyParking(Car car) {
+        return null;
+    }
+
+    @Override
+    public Car specifyFetch(CarTicket carTicket) {
+        return null;
     }
 }
