@@ -197,23 +197,6 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_park_car_in_more_empty_position_parking_lot_when_park_given_car() {
-        //given
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
-        Car car = new Car();
-        smartParkingBoy.getParkingLots().get(1).getParkingLot().put(new CarTicket(), new Car());
-        smartParkingBoy.getParkingLots().get(0).getParkingLot().put(new CarTicket(), new Car());
-        smartParkingBoy.getParkingLots().get(0).getParkingLot().put(new CarTicket(), new Car());
-        int size = smartParkingBoy.getParkingLots().get(0).getParkingLot().size();
-
-        //when
-        smartParkingBoy.park(car);
-
-        //then
-        assertEquals(size, smartParkingBoy.getCurrentParkingLot().getParkingLot().size());
-    }
-
-    @Test
     void should_park_car_in_larger_available_position_rate_parking_lot_when_park_given_car() {
         //given
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy();
