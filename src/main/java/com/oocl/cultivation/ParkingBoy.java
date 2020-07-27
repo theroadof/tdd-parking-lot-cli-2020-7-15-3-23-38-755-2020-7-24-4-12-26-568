@@ -17,6 +17,17 @@ public class ParkingBoy implements ManagementStrategy {
 
     public CarTicket park(Car car) {
         CarTicket carTicket = new CarTicket();
+        boolean flag = hasEmptyPosition();
+        if (flag) {
+            currentParkingLot.getParkingLot().put(carTicket, car);
+            return carTicket;
+        } else {
+            this.respondMessage = NOT_ENOUGH_POSITION;
+            return null;
+        }
+    }
+
+    private boolean hasEmptyPosition() {
         boolean flag = false;
         for (ParkingLot parkingLot : parkingLots) {
             if (parkingLot.getParkingLot().size() < parkingLot.getCapacity()) {
@@ -25,13 +36,7 @@ public class ParkingBoy implements ManagementStrategy {
                 break;
             }
         }
-        if (flag) {
-            currentParkingLot.getParkingLot().put(carTicket, car);
-            return carTicket;
-        } else {
-            this.respondMessage = NOT_ENOUGH_POSITION;
-            return null;
-        }
+        return flag;
     }
 
     public Car fetch(CarTicket ticket) {
