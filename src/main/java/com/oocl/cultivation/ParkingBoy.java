@@ -2,9 +2,6 @@ package com.oocl.cultivation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import static java.util.stream.Collectors.toList;
 
 public class ParkingBoy implements ManagementStrategy {
     private static final String NOT_ENOUGH_POSITION = "Not enough position.";
