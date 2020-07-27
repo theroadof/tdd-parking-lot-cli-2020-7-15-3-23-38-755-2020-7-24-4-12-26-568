@@ -36,9 +36,9 @@ class ManagerTest {
         ParkingLot superSmartParkingLot = superSmartParkingBoy.getCurrentParkingLot();
 
         //then
-        assertEquals(3, parkingLot.getParkingLot().size());
-        assertEquals(3, smartParkingLot.getParkingLot().size());
-        assertEquals(3, superSmartParkingLot.getParkingLot().size());
+        assertEquals(1, parkingLot.getParkingLot().size());
+        assertEquals(2, smartParkingLot.getParkingLot().size());
+        assertEquals(2, superSmartParkingLot.getParkingLot().size());
     }
 
     @Test
