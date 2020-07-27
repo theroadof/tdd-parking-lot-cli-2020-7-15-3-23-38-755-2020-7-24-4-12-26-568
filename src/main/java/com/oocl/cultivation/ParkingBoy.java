@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingBoy implements ManagementStrategy {
+    private static final String NOT_ENOUGH_POSITION = "Not enough position.";
+    private static final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket.";
+    private static final String PROVIDE_YOUR_PARKING_TICKET = "Please provide your parking ticket.";
     List<ParkingLot> parkingLots;
     ParkingLot currentParkingLot;
     String respondMessage;
@@ -26,7 +29,7 @@ public class ParkingBoy implements ManagementStrategy {
             currentParkingLot.getParkingLot().put(carTicket, car);
             return carTicket;
         } else {
-            this.respondMessage = "Not enough position.";
+            this.respondMessage = NOT_ENOUGH_POSITION;
             return null;
         }
     }
@@ -39,13 +42,14 @@ public class ParkingBoy implements ManagementStrategy {
                 parkingLot.getParkingLot().remove(ticket);
                 break;
             }
-            this.respondMessage = "Unrecognized parking ticket.";
+            this.respondMessage = UNRECOGNIZED_PARKING_TICKET;
         }
         return car;
     }
 
     public Car fetch() {
-        this.respondMessage = "Please provide your parking ticket.";
+        this.respondMessage =
+                PROVIDE_YOUR_PARKING_TICKET;
         return null;
     }
 
