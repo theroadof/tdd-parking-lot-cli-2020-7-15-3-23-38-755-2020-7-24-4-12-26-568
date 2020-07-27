@@ -47,7 +47,9 @@ public class ParkingBoy implements ManagementStrategy {
                 parkingLot.getParkingLot().remove(ticket);
                 break;
             }
-            this.respondMessage = UNRECOGNIZED_PARKING_TICKET;
+            if (parkingLots.indexOf(parkingLot) == parkingLots.size() - 1) {
+                this.respondMessage = UNRECOGNIZED_PARKING_TICKET;
+            }
         }
         return car;
     }
