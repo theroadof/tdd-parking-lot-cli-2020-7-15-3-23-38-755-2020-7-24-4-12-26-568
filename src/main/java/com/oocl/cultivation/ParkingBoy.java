@@ -55,8 +55,7 @@ public class ParkingBoy implements ManagementStrategy {
     }
 
     public Car fetch() {
-        this.respondMessage =
-                PROVIDE_YOUR_PARKING_TICKET;
+        this.respondMessage = PROVIDE_YOUR_PARKING_TICKET;
         return null;
     }
 
