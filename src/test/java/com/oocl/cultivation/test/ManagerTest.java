@@ -108,9 +108,11 @@ class ManagerTest {
     void should_return_message_when_specify_park_given_car() {
         //given
         Manager manager = new Manager();
-        for (int i = 0; i < manager.getParkingLot().getCapacity(); i++) {
-            manager.getParkingLot().getParkingLot().put(new CarTicket(), new Car());
-        }
+        manager.getParkingLots().forEach(parkingLot -> {
+            for(int i=0;i<parkingLot.getCapacity();i++){
+                parkingLot.getParkingLot().put(new CarTicket(),new Car());
+            }
+        });
 
         manager.addParkingBoy(new ParkingBoy());
         manager.addParkingBoy(new SmartParkingBoy());
@@ -149,7 +151,7 @@ class ManagerTest {
 
         //then
         assertNull(car);
-        assertEquals("Unrecognized parking ticket.",manager.getRespondMessageFrom(parkingBoy));
+        assertEquals("Unrecognized parking ticket.", manager.getRespondMessageFrom(parkingBoy));
     }
 
     @Test
@@ -165,6 +167,6 @@ class ManagerTest {
 
         //then
         assertNull(car);
-        assertEquals("Please provide your parking ticket.",manager.getRespondMessageFrom(parkingBoy));
+        assertEquals("Please provide your parking ticket.", manager.getRespondMessageFrom(parkingBoy));
     }
 }

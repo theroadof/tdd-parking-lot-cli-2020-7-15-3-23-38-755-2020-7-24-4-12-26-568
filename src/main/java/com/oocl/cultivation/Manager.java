@@ -1,18 +1,17 @@
 package com.oocl.cultivation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Manager extends ParkingBoy {
     private ManagementStrategy managementStrategy;
     private List<ParkingBoy> parkingBoys;
-    private ParkingLot parkingLot;
 
     public Manager() {
         super();
         this.parkingBoys = new ArrayList<>();
-        this.parkingLot = new ParkingLot(20);
-        this.addParkingLot(parkingLot);
+        this.getParkingLots().addAll(Arrays.asList(new ParkingLot(10),new ParkingLot(20)));
     }
 
     public void setManagementStrategy(ManagementStrategy managementStrategy) {
@@ -32,11 +31,7 @@ public class Manager extends ParkingBoy {
 
     public void addParkingBoy(ParkingBoy parkingBoy) {
         this.parkingBoys.add(parkingBoy);
-        parkingBoy.getParkingLots().add(this.parkingLot);
-    }
-
-    public ParkingLot getParkingLot() {
-        return parkingLot;
+        parkingBoy.getParkingLots().addAll(this.getParkingLots());
     }
 
     public List<ParkingBoy> getParkingBoys() {
