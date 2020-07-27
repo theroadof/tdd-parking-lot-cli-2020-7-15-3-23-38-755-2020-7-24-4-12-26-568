@@ -3,6 +3,9 @@ package com.oocl.cultivation;
 import java.util.Collections;
 
 public class SmartParkingBoy extends ParkingBoy implements ManagementStrategy {
+
+    private static final String NOT_ENOUGH_POSITION = "Not enough position.";
+
     public SmartParkingBoy() {
         super();
     }
@@ -13,7 +16,7 @@ public class SmartParkingBoy extends ParkingBoy implements ManagementStrategy {
         Collections.sort(this.parkingLots);
         this.currentParkingLot = this.parkingLots.get(0);
         if (this.currentParkingLot.getParkingLot().size() >= this.currentParkingLot.getCapacity()) {
-            this.respondMessage = "Not enough position.";
+            this.respondMessage = NOT_ENOUGH_POSITION;
             return null;
         }
         this.currentParkingLot.getParkingLot().put(carTicket, car);
