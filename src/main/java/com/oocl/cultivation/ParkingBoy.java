@@ -3,6 +3,7 @@ package com.oocl.cultivation;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ParkingBoy implements ManagementStrategy {
     private static final String NOT_ENOUGH_POSITION = "Not enough position.";
     private static final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket.";
@@ -17,8 +18,12 @@ public class ParkingBoy implements ManagementStrategy {
 
     public CarTicket park(Car car) {
         CarTicket carTicket = new CarTicket();
-        boolean flag = hasEmptyPosition();
-        if (flag) {
+//        Optional.ofNullable(parkingLots.stream()
+//                .filter(parkingLot -> (parkingLot.getParkingLot().size()<parkingLot.getCapacity())).collect(toList())).ifPresent(pa->{
+//            currentParkingLot = pa.get(0);
+//        });
+        
+        if (hasEmptyPosition()) {
             currentParkingLot.getParkingLot().put(carTicket, car);
             return carTicket;
         } else {

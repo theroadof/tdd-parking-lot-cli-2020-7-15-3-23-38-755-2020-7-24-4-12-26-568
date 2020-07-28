@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Manager extends ParkingBoy {
     private ManagementStrategy managementStrategy;
-    private List<ParkingBoy> parkingBoys;
+    private final List<ParkingBoy> parkingBoys;
 
     public Manager() {
         super();
@@ -15,9 +15,7 @@ public class Manager extends ParkingBoy {
     }
 
     public void setManagementStrategy(ManagementStrategy managementStrategy) {
-        if (parkingBoys.contains(managementStrategy)) {
-            this.managementStrategy = managementStrategy;
-        }
+        this.managementStrategy = managementStrategy;
     }
 
     public CarTicket parkingManagement(Car car) {

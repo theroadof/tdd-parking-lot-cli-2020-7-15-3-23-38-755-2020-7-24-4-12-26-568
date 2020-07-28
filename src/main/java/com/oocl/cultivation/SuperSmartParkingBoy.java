@@ -11,6 +11,7 @@ public class SuperSmartParkingBoy extends ParkingBoy implements ManagementStrate
     @Override
     public CarTicket park(Car car) {
         this.getParkingLots().sort((firstParkingLot, secondParkingLot) -> {
+            //todo extract
             if ((double)((firstParkingLot.getCapacity() - firstParkingLot.getParkingLot().size()) / firstParkingLot.getCapacity()) < (double)((secondParkingLot.getCapacity() - secondParkingLot.getParkingLot().size()) / secondParkingLot.getCapacity())) {
                 return 1;
             } else {
