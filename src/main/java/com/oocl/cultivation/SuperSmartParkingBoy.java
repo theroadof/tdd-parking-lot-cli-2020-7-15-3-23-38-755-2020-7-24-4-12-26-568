@@ -10,14 +10,7 @@ public class SuperSmartParkingBoy extends ParkingBoy implements ManagementStrate
 
     @Override
     public CarTicket park(Car car) {
-        this.getParkingLots().sort((firstParkingLot, secondParkingLot) -> {
-            //todo extract
-            if ((double)((firstParkingLot.getCapacity() - firstParkingLot.getParkingLot().size()) / firstParkingLot.getCapacity()) < (double)((secondParkingLot.getCapacity() - secondParkingLot.getParkingLot().size()) / secondParkingLot.getCapacity())) {
-                return 1;
-            } else {
-                return -1;
-            }
-        });
+        this.getParkingLots().sort(this::sortByAvailabilityRate);
         CarTicket carTicket = new CarTicket();
         this.currentParkingLot = this.getParkingLots().get(0);
         if (this.currentParkingLot.getParkingLot().size() >= this.currentParkingLot.getCapacity()) {
@@ -26,6 +19,14 @@ public class SuperSmartParkingBoy extends ParkingBoy implements ManagementStrate
         }
         this.currentParkingLot.getParkingLot().put(carTicket, car);
         return carTicket;
+    }
+
+    private int sortByAvailabilityRate(ParkingLot firstParkingLot, ParkingLot secondParkingLot) {
+        if ((double)((firstParkingLot.getCapacity() - firstParkingLot.getParkingLot().size()) / firstParkingLot.getCapacity()) < (double)((secondParkingLot.getCapacity() - secondParkingLot.getParkingLot().size()) / secondParkingLot.getCapacity())) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
     @Override
